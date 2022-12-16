@@ -17,6 +17,56 @@
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
+const cities = [];
+fetch(endpoint)
+.then( blob => blob.json())
+.then( item => cities.push(... item) );
+
+// console.log(cities);
+
+const search = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+function displayResult( value , city){
+  const valRegExp = new RegExp( value, 'gi');
+
+  //store matched result
+  const resultCity = city.filter( item => {
+    return ( item.city.match(valRegExp) || item.state.match(valRegExp));
+  });
+   //console.table( resultCity);
+
+  //create html   
+  const html = resultCity.map( item => {
+     
+    const city = item.city.replace( valRegExp, `<span class='hl'>${value}</span>`);
+    const state = item.state.replace( valRegExp, `<span class='hl'>${value}</span>`);
+    //console.log(`${city}, ${state} , ${item.population}`);
+    return `
+        <li>
+        <span class = 'name'>${city}, ${state}</span>
+        <span class = 'population'>${item.population}</span>
+        </li>
+        `;
+    }).join('');
+    //console.table( html);
+
+    suggestions.innerHTML = html;
+
+};
+
+function getInput(){
+  displayResult(this.value , cities);
+}
+
+// create a event listeners that listens for input from search
+search.addEventListener('change', getInput);
+search.addEventListener('keyup', getInput);
+
+//function to dislay data in suggestoions
+
+
+
 </script>
 </body>
 </html>

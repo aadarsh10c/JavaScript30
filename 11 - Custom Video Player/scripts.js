@@ -1,8 +1,8 @@
 // Select all components
 const player = document.querySelector('.player');
 const video = player.querySelector('.viewer');
-
-const progressBar = player.querySelector('.progress .progress__filled');
+const progress = player.querySelector('.progress');
+const progressBar = player.querySelector('.progress__filled');
 const toggle = player.querySelector('.toggle');
 // const volume = player.querySelector('input[name="volume"]');
 // const playback = player.querySelector('input[name="playbackRate"]');
@@ -36,6 +36,12 @@ function togglePlay(e){
     progressBar.style.flexBasis = progress + '%';
   }
 
+  
+  function scrub (e){
+    const time = (e.offsetX/progress.offsetWidth)* video.duration;
+    video.currentTime = time;
+  }
+
 //all th event listenres
 
 //toggle play/pause video
@@ -54,4 +60,13 @@ sliders.forEach( slider => slider.addEventListener('change', handleSlider));
 
 //listens for update in video
 video.addEventListener( 'timeupdate' , updateProgress);
+
+//listen for scrub
+let ismousedown = false;
+progress.addEventListener('click',scrub );
+progress.addEventListener('mousemove',(e) => ismousedown && scrub(e) );
+progress.addEventListener('mousedown', () => ismousedown = true );
+progress.addEventListener('mouseup',() => ismousedown = false );
+
+
 

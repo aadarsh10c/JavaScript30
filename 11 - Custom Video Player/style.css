@@ -101,7 +101,11 @@ body {
   width: 50%;
   background: #ffc600;
   flex: 0;
-  flex-basis: 50%;
+  flex-basis: 1%;
+  
+}
+.progress__filled:hover{
+  cursor: pointer;
 }
 
 /* unholy css to style input type="range" */

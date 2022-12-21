@@ -96,6 +96,29 @@
   </div>
 
 <script>
+  let checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
+  //console.log(checkboxes);
+
+  let lastChecked = null; 
+  let check = false;
+  function handler (e){
+    //console.log(e);
+    if (!e.shiftKey) {
+      lastChecked = this;
+      return;
+    }
+    //console.log(`lastChecked ${lastChecked}`);
+    checkboxes.forEach( checkbox => {
+      if ( checkbox == lastChecked || checkbox == this ) return check = !check;
+      if (check) return checkbox.checked = true;
+    } );
+    lastChecked = null;
+
+  }
+
+  checkboxes.forEach( checkbox => checkbox.addEventListener('click', handler));
+
+
 </script>
 </body>
 </html>

@@ -9,6 +9,7 @@ const toggle = player.querySelector('.toggle');
 
 const sliders = player.querySelectorAll('.player__slider');
 const skip = player.querySelectorAll('[data-skip]');
+const fullscreen = player.querySelector('.full__screen');
 
 //handler for differnet event listeners
 function togglePlay(e){
@@ -42,6 +43,12 @@ function togglePlay(e){
     video.currentTime = time;
   }
 
+  function handleFullscreen () {
+    console.log('clicked');
+    //this.innerText == '&#xf066;' ? this.innerText = '&#x26F6;': this.innerText = '&#xf066;';
+    player.classList.toggle('fullscreen');
+  }
+
 //all th event listenres
 
 //toggle play/pause video
@@ -67,6 +74,8 @@ progress.addEventListener('click',scrub );
 progress.addEventListener('mousemove',(e) => ismousedown && scrub(e) );
 progress.addEventListener('mousedown', () => ismousedown = true );
 progress.addEventListener('mouseup',() => ismousedown = false );
+
+fullscreen.addEventListener('click', handleFullscreen);
 
 
 

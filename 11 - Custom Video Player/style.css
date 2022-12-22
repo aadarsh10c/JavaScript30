@@ -28,9 +28,14 @@ body {
 }
 
 /* This css is only applied when fullscreen is active. */
-.player:fullscreen {
+.fullscreen {
   max-width: none;
-  width: 100%;
+  width: 100vw;
+  height: 90vh;
+}
+
+.exit__screen{
+  display: none;
 }
 
 .player:-webkit-full-screen {
@@ -58,19 +63,18 @@ body {
   border-color: #ffc600;
 }
 
-.fullscreen{
+.full__screen{
   background: none;
   color:white;
   max-width: 50px;
   border: 0;
   text-align: center;
   padding: 0 ;
-  padding-right: 10px;
 }
-.fullscreen:hover{
+.full__screen:hover{
   font-size: 20px;
 }
-.fullscreen:active{
+.full__screen:active{
   color: yellow;
 }
 

@@ -182,6 +182,35 @@
     </li>
   </ul>
 <script>
+  //get the  the list
+  const timeList = Array.from(document.querySelectorAll( 'li'));
+
+  //Extract the times in each list
+  const timeNodes = timeList.map( item => item.dataset.time);
+
+  //get total seconds
+  const totalSeconds = timeNodes
+  .reduce( (total,time) => {
+    //split mm:ss
+    let [ min , sec ] = time.split(":");
+    //console.log( min , sec);
+    let seconds = parseFloat( min ) * 60 + parseFloat( sec ) ;
+    return total = total + seconds;
+  },0);
+
+ // console.log( totalSeconds );
+
+  let leftSec = totalSeconds;
+
+  const hours = Math.floor( totalSeconds / 3600 )  ;
+  leftSec = totalSeconds % 3600 ;
+
+  const min = Math.floor( leftSec / 60 ) ;
+  leftSec = leftSec % 60 ; 
+
+  console.log(`${hours}:${min}:${leftSec}`);
+
+
 </script>
 </body>
 </html>

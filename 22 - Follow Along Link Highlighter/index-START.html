@@ -27,6 +27,42 @@
 
   <script>
     // 👀👀👀👀👀👀👀👀👀👀👀👀👀👀👀
+
+    //list of ll the links in the webpage
+    const linkList = document.querySelectorAll( 'a' );
+    //console.log( linkList );
+
+    //highliting all the links
+    //1.create a span class with highlight add it to the body
+    const highlight = document.createElement( 'span' );
+    highlight.classList.add("highlight"); 
+    document.body.appendChild( highlight );
+
+    // function to highlight link
+    function highlightLink (  ){
+      //add the higlight element to the link
+      const linkCoords = this.getBoundingClientRect();
+      //console.log( linkCoords );
+      const highlightCord = {
+        width : linkCoords.width,
+        height : linkCoords.height,
+        x : linkCoords.left,
+        y : linkCoords.top + window.scrollY  
+      }
+      console.log( highlightCord );
+      //Give the coordinates to span class
+      highlight.style.width = `${highlightCord.width}px`;
+      highlight.style.height = `${highlightCord.height}px`;
+      highlight.style.top = `${highlightCord.y}px`;
+      highlight.style.left = `${highlightCord.x}px`;
+
+    }
+
+    //add event listners to ech of the link
+    linkList.forEach( link => link.addEventListener( 'mouseenter' , highlightLink));
+
+
+
   </script>
 </body>
 </html>
